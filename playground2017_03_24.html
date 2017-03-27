@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="/node_modules/d3/build/d3.min.js"></script>
+    <title>Playground</title>
+</head>
+<body>
+    <h1 id="hello_world">Hello world</h1>
+</body>
+
+<script type="text/javascript">
+    d3.select("body")
+            .append("h1").text("Secondo h1");
+    d3.selectAll("h1")
+            .style("color","red");
+
+    var svg = d3.select("body")
+            .append("svg")
+            .attr("width",800)
+            .attr("height",400);
+    var numbers = [1,2,14,10,11,15]; //ho un array di 6 elementi e voglio creare un cerchio diverso per ognuno
+
+    function radius(d){
+        return d*10;
+    }
+    function centrox(d,i){
+        return 100*i;
+    }
+
+    //enter
+    svg.selectAll("circle")// mi dà l'insieme vuoto perchè non ho elementi circle. Lo metto in join con 6 elementi --> enter
+            .data(numbers)
+            .enter()
+            .append("circle")
+            .attr("r",radius)//in data c'è il dato associato all'elemento e d3 richiama IN AUTOMATICO radius su il data associato
+            //.attr("cx",centrox)//qui passo due parametri: il primo è d ed è il valore di numbers associato all'elemento. Il secondo
+            .attr("cx",function(d,i){//funzione anonima perchè è una funzione e non ha il nome: non può essere chiamata da nessuno se non
+                //all'interno di questo pezzo di codice in cui l'ho definita
+                return i*100;
+                //in questo modo non devo sempre creare funzioni e dargli un nome
+            })
+    //parametro è i ed è la posizione all'interno di numbers del valore di numbers associato all'elemento
+            .attr("cy",200)
+            .attr("fill","purple");
+    //exit
+
+    //update
+
+    //i dati si possono mappare anche su rappresentazioni diverse: volendo posso aggiungere una lista di elementi testuali, ognuna con un valore di ogni singolo elemento
+    d3.select("body")
+            .selectAll("p")
+            .data(numbers)
+            .enter()
+            .append("p")
+            .text(function(d){return "number: " + d});
+
+</script>
+</html>
