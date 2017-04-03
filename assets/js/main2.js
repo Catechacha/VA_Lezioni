@@ -2,6 +2,10 @@
  * Created by cate on 03/04/2017.
  */
 
+var svg = d3.select("#viz")
+    .append("svg")
+    .attr("width",600)
+    .attr("height",400);
 
 function generateNumbers(){
     var numbers=[];
@@ -14,10 +18,6 @@ function generateNumbers(){
 }
 
 function visualizeNumbers(myNumbers){
-    var svg = d3.select("#viz")
-        .append("svg")
-        .attr("width",600)
-        .attr("height",400);
     var gs = svg.selectAll("g")
         .data(numbers)
         .enter()
@@ -41,3 +41,8 @@ function visualizeNumbers(myNumbers){
 var numbers = generateNumbers();
 console.log('numbers',numbers);
 visualizeNumbers(numbers);
+
+d3.select("#shuffle")
+    .on('click',function(){
+        visualizeNumbers(generateNumbers())
+    });
