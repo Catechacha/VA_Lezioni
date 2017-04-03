@@ -7,7 +7,7 @@
     var numbers=[];
 
 /*GENERO IL DATASET AUTOMATICAMENTE: MODO 1*/
-//var n = Math.round(Math.random()*15); //prendi l'intero più vicino di un numero da 0 a 15. Mi serve per decidere quanti numeri voglio mettere nel dataset
+var n = Math.round(Math.random()*15); //prendi l'intero più vicino di un numero da 0 a 15. Mi serve per decidere quanti numeri voglio mettere nel dataset
 /*Math.random() ritorna un numero tra 0 e 1*/
 /*for(var i = 0; i < n; i++){
     var r = Math.round(Math.random()*250);
