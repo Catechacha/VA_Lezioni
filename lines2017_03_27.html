@@ -4,54 +4,22 @@
         <meta charset="UTF-8">
         <script type="text/javascript" src="/node_modules/d3/build/d3.min.js" charset="utf-8"></script>
         <link rel="stylesheet" type="text/css" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen">
+
         <title>Lines</title>
+
     </head>
     <body id="index" class="container">
         <h1 id="lines">Lines</h1>
+        <button type=""button"...
+
+        ></button>
         <div class="rows">
             <div id="viz" class="col-md-12">
 
             </div>
         </div>
-    <script type="text/javascript">
-        //get a new dataset
-        var numbers = [10,30,60,100,250,80];
 
-        var svg = d3.select("#viz")
-                .append("svg")
-                .attr("width",600)
-                .attr("height",400);
+        <script src="assets/js/main.js" type="text/javascript" charset="utf-8"></script>
 
-/*        svg.selectAll("line")
-                .data(numbers)
-                .enter()
-                .append("line")
-                .attr("x1",10)
-                .attr("y1",function(d,i){
-                    return 10*i;
-                })
-                .attr("y2",function(d,i){
-                    return 10*i;
-                })
-                .attr("x2",function(d){
-                    return 10 + d;
-                })
-                .attr("stroke","black")
-                .attr("stroke-width",4);
-*/
-        var gs = svg.selectAll("g")
-                .data(numbers)
-                .enter()
-                .append("g")
-                .attr("transform",function (d,i) {
-                    return "translate(10,"+(i*10+10)+")";
-                });
-        gs.append("line")
-                .attr("x2",function(d){
-                    return d;
-                }) //x1 y1 e y2 prendono il valore di default che è 0, perchè non sono definiti
-                .attr("stroke","black")
-                .attr("stroke-width",4);
-    </script>
     </body>
 </html>
