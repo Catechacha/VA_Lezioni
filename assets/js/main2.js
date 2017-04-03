@@ -2,6 +2,8 @@
  * Created by cate on 03/04/2017.
  */
 
+/*voglio che ad ogni click sul bottone rimuovo gli elementi grafici presenti pria in svg, e ci metto quelli nuovi*/
+
 var svg = d3.select("#viz")
     .append("svg")
     .attr("width",600)
@@ -18,23 +20,33 @@ function generateNumbers(){
 }
 
 function visualizeNumbers(myNumbers){
+
     var gs = svg.selectAll("g")
-        .data(numbers)
+        .data(myNumbers);
+
+    //exit
+    var gsToRemove = gs.exit().remove();
+
+    //append
+    var gsToAdd = gs
         .enter()
         .append("g")
-        .attr("transform",function (d,i) {
-            return "translate(10,"+(i*14+10)+")";
-        });
-    gs.append("line")
-        .attr("x2",function(d){
-            return d;
-        }) //x1 y1 e y2 prendono il valore di default che è 0, perchè non sono definiti
-        .attr("stroke","black")
-        .attr("stroke-width",4);
-    gs.append("text")
-        .attr("x",function(d){//coordinata x a cui inserire la scritta
-            return d + 4;
-        })
+        .attr("transform",function (d, i){
+        return "translate(10,"+(i*14+10)+")";
+    });
+    gsToAdd.append("line");
+    gsToAdd.append("text");
+
+    //update
+    gs.select("line")
+        .transition()//x mettere la transizione da uno shuffle ad un altro
+        .duration(1500)//x la durata della transizione
+        .attr("x2",function(d){return d})
+        .attr("stroke","black");
+    gs.select("text")
+        .transition()//x mettere la transizione da uno shuffle ad un altro
+        .duration(1500)//x la durata della transizione
+        .attr("x",function(d){return d+4})
         .text(function(d){return d});
 }
 
