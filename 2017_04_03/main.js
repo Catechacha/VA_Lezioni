@@ -62,7 +62,10 @@ function visualizeNumbers(myNumbers){
 
     var cScale = d3.scale.linear()
         .domain([0,d3.max(myNumbers)])
-        .range(["#fff", "#f00"]);
+        //.range(["#fff", "#f00"]);
+        //.range(["#fee0d2","#fc9272","#de2d26"]);//red 3-classes da color brewer
+        //ora uso direttamente la lib colorbrewer messa con npm
+        .range(colorbrewer['Reds'][5]);
 
     gs.select("line")
         .transition()//x mettere la transizione da uno shuffle ad un altro
